@@ -11,12 +11,12 @@ public class PlayerMover : MonoBehaviour
 
         input.MoveRightStream
             .Subscribe(_ => {
-                direction.x = +0.5f;
+                direction.x = +1.3f;
                 Move(direction);
             }).AddTo(gameObject);
         input.MoveLeftStream
             .Subscribe(_ => {
-                direction.x = 0.5f * -1;
+                direction.x = 1.3f * -1;
                 Move(direction);
             }).AddTo(gameObject);
 
@@ -26,8 +26,8 @@ public class PlayerMover : MonoBehaviour
 
     private void Move(Vector2 direction) {
         Vector2 pos = transform.position;
-        if (pos.x == -1 && direction.x == -0.5f) return;
-        if (pos.x == 0.5 && direction.x == 0.5f) return;
+        if (pos.x <= -1.9f && direction.x == -1.3f) return;
+        if (pos.x >= 1.9f && direction.x == 1.3f) return;
         pos += direction;
         transform.position = pos;
     }
