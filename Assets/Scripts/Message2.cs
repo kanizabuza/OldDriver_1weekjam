@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class Message : MonoBehaviour
+public class Message2 : MonoBehaviour
 {
     // メッセージUI
     [SerializeField] private Text messageText;
@@ -13,19 +13,17 @@ public class Message : MonoBehaviour
     // 表示するメッセージ
     [SerializeField]
     [TextArea(1, 20)]
-    private string allMessage = "おばあちゃん：おじいちゃんや、そろそろ私たちも年だし、免許返納を考えないかい？。\n"
-        + "高齢者が起こす事故が多くニュースになっているし、いつか私たちも、と思うとねぇ<>"
-        + "おじいちゃん：何を言ってるんだ！俺たちの地域では車を運転しないと生きていけないだろう！<>"
-        + "おじちゃん：それに今日も車でお出かけしようっていう話だったじゃないか！！\n"
-        + "車がない生活なんで考えられないぞ！<>"
-        + "おじいちゃん：わしは免許返納なんて絶対にしないね！！+<>"
-        + "おばあちゃん：!!\n" 
-        + "気持ちはわかるけどねぇ、事故を起こしてからじゃおそいんじゃないかねぇ<>"
-        + "おじいちゃん：わしが事故を起こすわけないじゃろう\n"
-        + "何年運転してると思っているんじゃ！！<>"
-        + "おばあちゃん：そうかねぇ………。\n"
-        +"そこまでいうなら、今日も車で出かけるとするかねぇ<>"
-        + "おじいちゃん：おう！いくぞ、ばあさん";
+    private string allMessage = "おばあちゃん：おじいちゃんや、これ、逆走してはいないかい？？。\n"
+        + "さっきから、同じ方向に進んでいる車が見当たらないんじゃが……<>"
+        + "おじいちゃん：何を言っとるんじゃ！！！俺たちが進んでいる方向があっているに決まってるじゃろう！！<>"
+        + "おばあちゃん：いったん止まって、確認したほうがいいぞい\n"
+        + "事故が起こってからじゃ遅いとおもうんじゃ！<>"
+        + "おじいちゃん：フッフッフッフ…<>"
+        + "おばあちゃん：おじいさん…？<>" 
+        + "？おじいちゃん：ぶつからなければ事故とはいわないんじゃ！！！！！<>"
+        + "おばあちゃん：おじいさんっ！？！？！？<>"
+        + "？おじいちゃん：風になるぜぇぇぇぇぇ！！！<>"
+        +"おばあちゃん：いやぁぁぁぁぁぁぁぁぁぁ！！！";
 
     //使用する分割文字列
     [SerializeField] private string splitString = "<>";
@@ -50,7 +48,9 @@ public class Message : MonoBehaviour
     //メッセージをすべて表示したかどうか
     private bool isEndMessage = false;
     [SerializeField] private Image ozichan;
+    [SerializeField] private Image newOzichan;
     [SerializeField] private Image obachan;
+    private bool isOzichan = true;
 
     // [SerializeField] private Animator omoideAnim;
     // [SerializeField] private Animator hideAnim;
@@ -80,19 +80,36 @@ public class Message : MonoBehaviour
             // テキスト表示時間を経過したらメッセージを追加
             if (elapsedTime >= textSpeed) {
                 messageText.text += splitMessage[messageNum][nowTextNum];
-                if (messageText.text.Contains("おじい")) {
-                    // omoideImage.gameObject.SetActive(true);
-                    // omoideAnim.SetTrigger("isImageShow");
-                    Debug.Log("1");
-                    ozichan.color = new Color(1.0f, 1.0f, 1.0f);
-                    obachan.color = new Color(0.3f, 0.3f, 0.3f);
+                if (messageText.text.Contains("おじ")) {
+                    if (isOzichan) {
+                        // omoideImage.gameObject.SetActive(true);
+                        // omoideAnim.SetTrigger("isImageShow");
+                        Debug.Log("1");
+                        ozichan.color = new Color(1.0f, 1.0f, 1.0f);
+                        obachan.color = new Color(0.3f, 0.3f, 0.3f);
+                    }
                 }
-                if (messageText.text.Contains("おばあ")) {
+                if (messageText.text.Contains("おば")) {
                     Debug.Log("2");
-                    ozichan.color = new Color(0.3f, 0.3f, 0.3f);
+                    if (isOzichan) {
+                        ozichan.color = new Color(0.3f, 0.3f, 0.3f);
+                    } else {
+                        newOzichan.color = new Color(0.3f, 0.3f, 0.3f);
+                    }
                     obachan.color = new Color(1.0f, 1.0f, 1.0f);
                 } else if (messageText.text.Contains("-")) {
                     messageText.color = Color.black;
+                }
+
+                if (messageText.text.Contains("？おじ")) {
+                    Debug.Log("1");
+                    // omoideImage.gameObject.SetActive(true);
+                    // omoideAnim.SetTrigger("isImageShow");
+                    ozichan.gameObject.SetActive(false);
+                    newOzichan.gameObject.SetActive(true);
+                    isOzichan = false;
+                    newOzichan.color = new Color(1.0f, 1.0f, 1.0f);
+                    obachan.color = new Color(0.3f, 0.3f, 0.3f);
                 }
                 nowTextNum++;
                 elapsedTime = 0f;
@@ -163,6 +180,6 @@ public class Message : MonoBehaviour
 
     void ChangeScene()
     {
-        SceneManager.LoadScene("Kaiwa2");
+        //SceneManager.LoadScene("Kaiwa2");
     }
 }
