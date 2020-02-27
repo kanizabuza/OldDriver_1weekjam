@@ -22,10 +22,9 @@ public class BaseEnemy : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = transform.up * -1 * speed;
     }
 
-    protected void MoveLeftAndRight(Vector2 direction) 
+    protected Vector2 MoveLeftAndRight(Vector2 enemyPosition,Vector2 playerPos, float speed) 
     {
-        GetComponent<Rigidbody2D>().velocity = direction;
-        this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(Player.transform.position.x, Player.transform.position.y), Speed * Time.deltaTime);
-
+        Vector3 position =  Vector3.MoveTowards(enemyPosition, new Vector3(playerPos.x, playerPos.y,-1), speed * Time.deltaTime);
+        return position;
     }
 }
