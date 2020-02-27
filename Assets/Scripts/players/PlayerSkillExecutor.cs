@@ -32,7 +32,7 @@ public class PlayerSkillExecutor : MonoBehaviour
     private void Update()
     {
         //test
-        ChargeSkill(1f);
+       // ChargeSkill(1f);
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public class PlayerSkillExecutor : MonoBehaviour
     /// value分だけスキルゲージを溜める
     /// </summary>
     /// <param name="value">足す値</param>
-    private void ChargeSkill(float value )
+    public void ChargeSkill(float value )
     {
         skillGauge += value;
         if (skillGauge >= 100) skillGauge = 100;
