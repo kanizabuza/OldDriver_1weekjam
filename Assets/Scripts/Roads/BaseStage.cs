@@ -7,8 +7,10 @@ public abstract class BaseStage : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject item;
+    [SerializeField] private GameObject skillItem;
     [SerializeField] private float enemyRate;
     [SerializeField] private float itemRate;
+    [SerializeField] private float skillItemRate;
     [SerializeField] private GameStateManager stateManager;
 
     private bool isPlaying = true;
@@ -23,12 +25,11 @@ public abstract class BaseStage : MonoBehaviour
             .Where(_ => isPlaying)
             .Subscribe(_ => {
                 Generate();
-                Debug.Log("b");
             }).AddTo(this);
 
         stateManager.CurrentState
             .FirstOrDefault(x => x == GameState.Finish)
-            .Subscribe(_ => isPlaying = false);
+            .Subscribe(_ => isPlaying = false).AddTo(this);
     }
 
     /// <summary>
@@ -38,7 +39,7 @@ public abstract class BaseStage : MonoBehaviour
     {
         InitializeDicts();
         int id = RandomChoose();
-        if (id == 2) return;
+        if (id == 3) return;
         var obj = Instantiate(objDict[id]);
 
         obj.transform.position = RandomPos();
@@ -51,7 +52,7 @@ public abstract class BaseStage : MonoBehaviour
     private Vector2 RandomPos()
     {
         var index = UnityEngine.Random.Range(0, xPos.Length);
-        return new Vector2(xPos[index], transform.position.y);
+        return new Vector2(xPos[index], 7.0f);
     }
 
     /// <summary>
@@ -87,11 +88,13 @@ public abstract class BaseStage : MonoBehaviour
         objDict = new Dictionary<int, GameObject>();
         objDict.Add(0,enemy);
         objDict.Add(1, item);
-        objDict.Add(2, null);
+        objDict.Add(2, skillItem);
+        objDict.Add(3, null);
 
         dropDict = new Dictionary<int, float>();
         dropDict.Add(0,enemyRate);
         dropDict.Add(1, itemRate);
-        dropDict.Add(2, 100 - (enemyRate+itemRate));
+        dropDict.Add(2, skillItemRate);
+        dropDict.Add(3, 100 - (enemyRate + itemRate + skillItemRate));
     }
 }
