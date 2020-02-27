@@ -11,9 +11,10 @@ public class PlayerInput : MonoBehaviour
     public Subject<Unit> SkillStream => skillStream;
 
     /// <summary>
-    /// InputをObserveする
+    /// Inputを監視する
     /// </summary>
-    private void Start() {
+    private void Start()
+    {
         InputAsObservable.GetKeyDown(KeyCode.RightArrow)
             .Subscribe(moveRightStream.OnNext).AddTo(this);
         InputAsObservable.GetKeyDown(KeyCode.LeftArrow)

@@ -8,11 +8,16 @@ public class PlayerSkillExecutor : MonoBehaviour
     [SerializeField] private Animator cutInAnim;
     [SerializeField] private GameObject cutIn;
     [SerializeField] private Slider slider;
+    [SerializeField] private int scoreValue = 10;
 
     private PlayerInput input;
     private float skillGauge = 0;
 
-    private void Start() {
+    private Subject<int> onSkill = new Subject<int>();
+    public IObservable<int> OnSkill => onSkill; 
+
+    private void Start()
+    {
         input = GetComponent<PlayerInput>();
         input.SkillStream
             .Where(_ => skillGauge > 90)
@@ -20,9 +25,12 @@ public class PlayerSkillExecutor : MonoBehaviour
 
         this.ObserveEveryValueChanged(x => x.skillGauge)
             .Subscribe(_ => slider.value = skillGauge);
+
+        onSkill.AddTo(this);
     }
 
-    private void Update() {
+    private void Update()
+    {
         //test
         ChargeSkill(1f);
     }
@@ -30,8 +38,11 @@ public class PlayerSkillExecutor : MonoBehaviour
     /// <summary>
     /// スキルを実行
     /// </summary>
-    private void ExecuteSkill() {
+    private void ExecuteSkill()
+    {
         skillGauge = 0;
+
+        onSkill.OnNext(scoreValue);
 
         cutIn.gameObject.SetActive(true);
         cutInAnim.Play("cutInAnimation",0,0.0f);
@@ -45,7 +56,8 @@ public class PlayerSkillExecutor : MonoBehaviour
     /// value分だけスキルゲージを溜める
     /// </summary>
     /// <param name="value">足す値</param>
-    private void ChargeSkill(float value ) {
+    private void ChargeSkill(float value )
+    {
         skillGauge += value;
         if (skillGauge >= 100) skillGauge = 100;
     }

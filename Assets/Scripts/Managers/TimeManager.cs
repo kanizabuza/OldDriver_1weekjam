@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UniRx.Async;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        CountDownAsync().Forget();
     }
 
-    // Update is called once per frame
-    void Update()
+    private async UniTask CountDownAsync()
     {
-        
+        await UniTask.Delay(1);
     }
 }
