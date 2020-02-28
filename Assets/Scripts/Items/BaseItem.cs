@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BaseItem : MonoBehaviour
+public abstract class BaseItem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int scoreValue = 0;
+    public int ScoreValue => scoreValue;
+
+    private float speed = 1f;
+
+    private void Start()
     {
-        
+        Move();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Move()
     {
-        
+        GetComponent<Rigidbody2D>().velocity = transform.up * -1 * speed;
     }
 }

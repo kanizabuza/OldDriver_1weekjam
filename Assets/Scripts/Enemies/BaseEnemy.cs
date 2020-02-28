@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
 {
-    protected private int score;
+    [SerializeField] private int scoreValue = 0;
+    public int ScoreValue => scoreValue;
 
     // Start is called before the first frame update
     void Start()
