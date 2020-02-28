@@ -50,7 +50,9 @@ public class Message2 : MonoBehaviour
     [SerializeField] private Image ozichan;
     [SerializeField] private Image newOzichan;
     [SerializeField] private Image obachan;
+    [SerializeField] private Image obachan2;
     private bool isOzichan = true;
+    private int obachanNum = 0;
 
     // [SerializeField] private Animator omoideAnim;
     // [SerializeField] private Animator hideAnim;
@@ -80,23 +82,36 @@ public class Message2 : MonoBehaviour
             // テキスト表示時間を経過したらメッセージを追加
             if (elapsedTime >= textSpeed) {
                 messageText.text += splitMessage[messageNum][nowTextNum];
+                if(obachanNum > 3) {
+                    obachan.gameObject.SetActive(false);
+                    obachan2.gameObject.SetActive(true);
+                }
                 if (messageText.text.Contains("おじ")) {
                     if (isOzichan) {
                         // omoideImage.gameObject.SetActive(true);
                         // omoideAnim.SetTrigger("isImageShow");
                         Debug.Log("1");
                         ozichan.color = new Color(1.0f, 1.0f, 1.0f);
-                        obachan.color = new Color(0.3f, 0.3f, 0.3f);
+                        if (obachanNum < 4) {
+                            obachan.color = new Color(0.3f, 0.3f, 0.3f);
+                        } else {
+                            obachan2.color = new Color(0.3f, 0.3f, 0.3f);
+                        }
                     }
                 }
                 if (messageText.text.Contains("おば")) {
                     Debug.Log("2");
+                    Debug.Log(obachanNum + "Num");
                     if (isOzichan) {
                         ozichan.color = new Color(0.3f, 0.3f, 0.3f);
                     } else {
                         newOzichan.color = new Color(0.3f, 0.3f, 0.3f);
                     }
-                    obachan.color = new Color(1.0f, 1.0f, 1.0f);
+                    if (obachanNum < 4) {
+                        obachan.color = new Color(1.0f, 1.0f, 1.0f);
+                    } else {
+                        obachan2.color = new Color(1.0f, 1.0f, 1.0f);
+                    }
                 } else if (messageText.text.Contains("-")) {
                     messageText.color = Color.black;
                 }
@@ -109,7 +124,11 @@ public class Message2 : MonoBehaviour
                     newOzichan.gameObject.SetActive(true);
                     isOzichan = false;
                     newOzichan.color = new Color(1.0f, 1.0f, 1.0f);
-                    obachan.color = new Color(0.3f, 0.3f, 0.3f);
+                    if (obachanNum < 4) {
+                        obachan.color = new Color(0.3f, 0.3f, 0.3f);
+                    } else {
+                        obachan2.color = new Color(0.3f, 0.3f, 0.3f);
+                    }
                 }
                 nowTextNum++;
                 elapsedTime = 0f;
@@ -130,7 +149,6 @@ public class Message2 : MonoBehaviour
             }
         } else {
             elapsedTime += Time.deltaTime;
-
             //クリックアイコンを点滅する時間を超えたとき、反転させる
             if (elapsedTime >= clickFlashTime) {
                 clickIcon.enabled = !clickIcon.enabled;
@@ -149,6 +167,7 @@ public class Message2 : MonoBehaviour
                 clickIcon.enabled = false;
                 elapsedTime = 0f;
                 isOneMessage = false;
+                obachanNum++;
                 //メッセージ全部表示されていたらゲームオブジェクト自体の削除
                 if (messageNum >= splitMessage.Length) {
                     isEndMessage = true;

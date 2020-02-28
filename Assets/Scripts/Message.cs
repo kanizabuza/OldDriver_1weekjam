@@ -50,8 +50,10 @@ public class Message : MonoBehaviour
     //メッセージをすべて表示したかどうか
     private bool isEndMessage = false;
     [SerializeField] private Image ozichan;
+    [SerializeField] private Image ozichan2;
     [SerializeField] private Image obachan;
 
+    private int ozichanNum = 0;
     // [SerializeField] private Animator omoideAnim;
     // [SerializeField] private Animator hideAnim;
     // [SerializeField] private Image QuestImage;
@@ -77,6 +79,10 @@ public class Message : MonoBehaviour
             return;
         }
         if (!isOneMessage) {
+            if(ozichanNum >= 3) {
+                ozichan.gameObject.SetActive(false);
+                ozichan2.gameObject.SetActive(true);
+            }
             // テキスト表示時間を経過したらメッセージを追加
             if (elapsedTime >= textSpeed) {
                 messageText.text += splitMessage[messageNum][nowTextNum];
@@ -84,12 +90,20 @@ public class Message : MonoBehaviour
                     // omoideImage.gameObject.SetActive(true);
                     // omoideAnim.SetTrigger("isImageShow");
                     Debug.Log("1");
-                    ozichan.color = new Color(1.0f, 1.0f, 1.0f);
+                    if (ozichanNum < 3) {
+                        ozichan.color = new Color(1.0f, 1.0f, 1.0f);
+                    } else {
+                        ozichan2.color = new Color(1.0f, 1.0f, 1.0f);
+                    }
                     obachan.color = new Color(0.3f, 0.3f, 0.3f);
                 }
                 if (messageText.text.Contains("おばあ")) {
                     Debug.Log("2");
-                    ozichan.color = new Color(0.3f, 0.3f, 0.3f);
+                    if (ozichanNum < 3) {
+                        ozichan.color = new Color(0.3f, 0.3f, 0.3f);
+                    } else {
+                        ozichan2.color = new Color(0.3f, 0.3f, 0.3f);
+                    }
                     obachan.color = new Color(1.0f, 1.0f, 1.0f);
                 } else if (messageText.text.Contains("-")) {
                     messageText.color = Color.black;
@@ -132,6 +146,7 @@ public class Message : MonoBehaviour
                 clickIcon.enabled = false;
                 elapsedTime = 0f;
                 isOneMessage = false;
+                ozichanNum++;
                 //メッセージ全部表示されていたらゲームオブジェクト自体の削除
                 if (messageNum >= splitMessage.Length) {
                     isEndMessage = true;
