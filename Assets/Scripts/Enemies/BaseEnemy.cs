@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class BaseEnemy : MonoBehaviour
+public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] private int scoreValue = 0;
+    [SerializeField] private float speed = 0;
     public int ScoreValue => scoreValue;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        Move();
     }
 
     // Update is called once per frame
@@ -19,7 +20,7 @@ public class BaseEnemy : MonoBehaviour
     { 
     }
 
-    protected void Move(float speed)
+    protected void Move()
     {
         GetComponent<Rigidbody2D>().velocity = transform.up * -1 * speed;
     }

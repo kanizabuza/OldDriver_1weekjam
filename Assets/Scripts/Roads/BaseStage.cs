@@ -17,15 +17,20 @@ public abstract class BaseStage : MonoBehaviour
     private bool isPlaying = true;
     private float[] xPos = new float[] { -1.9f, -0.6f, 0.6f, 1.9f };
     private float tempRate;
+    private float interval = 0.5f;
+    private float preInterval;
 
     Dictionary<int, GameObject> objDict;
     Dictionary<int, float> dropDict;
 
     private void Start()
     {
-        Observable.Interval(TimeSpan.FromSeconds(0.5f))
+        preInterval = interval;
+        Observable.Interval(TimeSpan.FromSeconds(interval))
             .Where(_ => isPlaying == true)
             .Subscribe(_ => {
+                if (hitDetector.IsStar) interval = 0.05f;
+                if (hitDetector.IsStar == false) interval = preInterval;
                 Generate();
             }).AddTo(this);
 

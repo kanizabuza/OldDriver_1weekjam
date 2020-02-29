@@ -13,7 +13,7 @@ public class PatorolCar : BaseEnemy
     // Start is called before the first frame update
     void Start()
     {
-        Move(1f);
+        Move();
         direction = transform.right;
         if (transform.position.x > playerX) {
             direction = transform.right * -1;
@@ -37,8 +37,8 @@ public class PatorolCar : BaseEnemy
                 Debug.Log("1");
                 GetComponent<Rigidbody2D>().velocity = direction * 0;
                 isStop = true;
-                Move(0f);
-                Move(1.0f);
+                //Move(0f);
+                Move();
             }
         } else {
             if (transform.position.x < playerX && !isStop) {
