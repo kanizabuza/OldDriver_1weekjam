@@ -13,6 +13,7 @@ public class PlayerHitDetector : MonoBehaviour
     public IObservable<int> OnHit => onHit;
 
     private bool isStar = false;
+    public bool IsStar => isStar;
 
     private void Start()
     {
@@ -26,8 +27,13 @@ public class PlayerHitDetector : MonoBehaviour
     private async UniTask ChangeStarState(int value)
     {
         isStar = true;
+        var startPos = transform.position;
+        LeanTween.moveY(this.gameObject, 1.0f, 1.5f).setEaseInOutCubic();
+
         await UniTask.Delay(5000);
         isStar = false;
+        var targetPos = new Vector2(transform.position.x, -3f);
+        LeanTween.move(this.gameObject, targetPos, 0.2f).setEaseInOutCubic();
     }
 
     /// <summary>
@@ -58,11 +64,11 @@ public class PlayerHitDetector : MonoBehaviour
             case "Item":
                 var value = obj.GetComponent<BaseItem>().ScoreValue;
                 onHit.OnNext(value);
-                Destroy(obj);
+                Destroy(obj.gameObject);
                 break;
             case "SkillItem":
-                skillExecutor.ChargeSkill(100);
-                Destroy(obj);
+                skillExecutor.ChargeSkill(50);
+                Destroy(obj.gameObject);
                 break;
             default:
                 break;

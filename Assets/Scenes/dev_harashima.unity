@@ -224,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11142141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0.6, y: -3, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 1790951806}
@@ -247,6 +247,7 @@ MonoBehaviour:
   cutIn: {fileID: 1525812383}
   slider: {fileID: 2062086816}
   scoreValue: 10
+  hitDetector: {fileID: 11142147}
 --- !u!114 &11142147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,18 +941,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b6a7c3ff308fd4897272d9df7fea91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2045561819 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2309275604936433673, guid: 88a2dc7ccbc830c498ba439c0af0a335,
-    type: 3}
-  m_PrefabInstance: {fileID: 2309275602933967826}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51848410d6af23242abbc562e9ab2238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2062086814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1132,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2309275604936433669, guid: 88a2dc7ccbc830c498ba439c0af0a335,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309275604936433673, guid: 88a2dc7ccbc830c498ba439c0af0a335,
+        type: 3}
+      propertyPath: playerHit
+      value: 
+      objectReference: {fileID: 11142147}
     - target: {fileID: 2309275604936433675, guid: 88a2dc7ccbc830c498ba439c0af0a335,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1213,11 +1212,6 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 280376066}
-    - target: {fileID: 2309275604936433673, guid: 88a2dc7ccbc830c498ba439c0af0a335,
-        type: 3}
-      propertyPath: playerHit
-      value: 
-      objectReference: {fileID: 11142147}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88a2dc7ccbc830c498ba439c0af0a335, type: 3}
 --- !u!1001 &3466667200979857796
@@ -1527,7 +1521,6 @@ MonoBehaviour:
   enemyRate: 50
   itemRate: 20
   skillItemRate: 10
-  stateManager: {fileID: 2045561819}
 --- !u!4 &8598996604414944609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8598996603783836758, guid: 83dd0e397e3bc5a4f849aa84fce71da1,

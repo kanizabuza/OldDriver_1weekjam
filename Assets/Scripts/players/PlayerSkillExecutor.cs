@@ -1,5 +1,6 @@
 ﻿using System;
 using UniRx;
+using UniRx.Async;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class PlayerSkillExecutor : MonoBehaviour
     [SerializeField] private GameObject cutIn;
     [SerializeField] private Slider slider;
     [SerializeField] private int scoreValue = 10;
+    [SerializeField] private PlayerHitDetector hitDetector;
 
     private PlayerInput input;
     private float skillGauge = 0;
@@ -20,7 +22,7 @@ public class PlayerSkillExecutor : MonoBehaviour
     {
         input = GetComponent<PlayerInput>();
         input.SkillStream
-            .Where(_ => skillGauge > 90)
+            .Where(_ => skillGauge >= 100)
             .Subscribe(__ => ExecuteSkill()).AddTo(gameObject);
 
         this.ObserveEveryValueChanged(x => x.skillGauge)
@@ -40,6 +42,7 @@ public class PlayerSkillExecutor : MonoBehaviour
     /// </summary>
     private void ExecuteSkill()
     {
+        if (hitDetector.IsStar) return;
         skillGauge = 0;
 
         onSkill.OnNext(scoreValue);

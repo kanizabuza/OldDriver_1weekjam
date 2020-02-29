@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4663845680619465242}
   - component: {fileID: 6431355688906671607}
   m_Layer: 0
-  m_Name: TestScoreItem
+  m_Name: TestSkillItem
   m_TagString: SkillItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

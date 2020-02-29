@@ -19,7 +19,7 @@ public class ResultManager : MonoBehaviour
     /// </summary>
     private void ShowResult()
     {
-        Debug.Log("a");
+        Debug.Log("GameOver");
     }
 
     /// <summary>

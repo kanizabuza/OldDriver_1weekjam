@@ -11,8 +11,8 @@ public abstract class BaseStage : MonoBehaviour
     [SerializeField] private float enemyRate;
     [SerializeField] private float itemRate;
     [SerializeField] private float skillItemRate;
-    [SerializeField] private GameStateManager stateManager;
-
+    //[SerializeField] private GameStateManager stateManager;
+    private GameStateManager stateManager;
     private bool isPlaying = true;
     private float[] xPos = new float[] { -1.9f, -0.6f, 0.6f, 1.9f };
 
@@ -22,10 +22,12 @@ public abstract class BaseStage : MonoBehaviour
     private void Start()
     {
         Observable.Interval(TimeSpan.FromSeconds(0.5f))
-            .Where(_ => isPlaying)
+            .Where(_ => isPlaying == true)
             .Subscribe(_ => {
                 Generate();
             }).AddTo(this);
+
+        stateManager = GameObject.Find("Manager").GetComponent<GameStateManager>();
 
         stateManager.CurrentState
             .FirstOrDefault(x => x == GameState.Finish)
@@ -41,7 +43,6 @@ public abstract class BaseStage : MonoBehaviour
         int id = RandomChoose();
         if (id == 3) return;
         var obj = Instantiate(objDict[id]);
-
         obj.transform.position = RandomPos();
     }
 

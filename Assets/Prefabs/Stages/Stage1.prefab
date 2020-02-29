@@ -51,10 +51,8 @@ MonoBehaviour:
   skillItem: {fileID: 5870819039393407808, guid: af63801f4bbb0c64db580585db50de86,
     type: 3}
   enemyRate: 50
-  itemRate: 20
-  skillItemRate: 10
-  stateManager: {fileID: 2309275604936433673, guid: 88a2dc7ccbc830c498ba439c0af0a335,
-    type: 3}
+  itemRate: 10
+  skillItemRate: 25
 --- !u!1 &6906153681113312424
 GameObject:
   m_ObjectHideFlags: 0
