@@ -65,7 +65,7 @@ public class PlayerSkillExecutor : MonoBehaviour
     {
         var targetGauge = skillGauge + value;
         while (skillGauge <= targetGauge) {
-            skillGauge += 1;
+            skillGauge += 2;
             await UniTask.Delay(10);
         }
     }
