@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UniRx;
 using UniRx.Async;
 using UnityEngine;
@@ -14,16 +15,38 @@ public class StageManager : MonoBehaviour
     private int stageId = 0;
     private GameObject preStage;
     private GameObject stage;
+    private bool isTutorial = true;
 
     private void Start()
     {
         InitializeDicts();
 
+        Initialize();
+        /*
         stage = Instantiate(stageDict[stageId]);
         preStage = stage;
 
         this.ObserveEveryValueChanged(_ => scoreManager.TotalScore)
             .Where(t => t > scoreDict[stageId])
+            .Subscribe(async _ => await ChangeStage()).AddTo(this);*/
+    }
+
+    private void Initialize()
+    {
+        Observable.Timer(TimeSpan.FromSeconds(10))
+            .Subscribe(_ => {
+                Destroy(GameObject.Find("Tutorial"));
+                isTutorial = false;
+
+                stage = Instantiate(stageDict[stageId]);
+                preStage = stage;
+            });
+
+        //stage = Instantiate(stageDict[stageId]);
+        //preStage = stage;
+
+        this.ObserveEveryValueChanged(_ => scoreManager.TotalScore)
+            .Where(t => t > scoreDict[stageId] && !isTutorial)
             .Subscribe(async _ => await ChangeStage()).AddTo(this);
     }
 

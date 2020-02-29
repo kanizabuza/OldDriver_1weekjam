@@ -2,10 +2,13 @@
 using UniRx;
 using UniRx.Async;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerHitDetector : MonoBehaviour
 {
     [SerializeField] private PlayerSkillExecutor skillExecutor;
+    private PostProcess pp;
+    private CameraShake cs;
     private Subject<Unit> onDeath = new Subject<Unit>();
     private Subject<int> onHit = new Subject<int>();
     public IObservable<Unit> OnDeath => onDeath;
@@ -18,6 +21,8 @@ public class PlayerHitDetector : MonoBehaviour
     {
         skillExecutor.OnSkill.Subscribe(async _ => await ChangeStarState(0));
         onDeath.AddTo(this);
+        pp = GameObject.Find("Post-process Volume").GetComponent<PostProcess>();
+        cs = GameObject.Find("Main Camera").GetComponent<CameraShake>();
     }
 
     /// <summary>
@@ -28,11 +33,11 @@ public class PlayerHitDetector : MonoBehaviour
         isStar = true;
         var startPos = transform.position;
         LeanTween.moveY(this.gameObject, 1.0f, 1.5f).setEaseInOutCubic();
-
-        //await UniTask.Delay(skillExecutor.SkillGauge);
+        pp.StarEffect();
         await UniTask.WaitUntil(() => skillExecutor.SkillGauge <= 0);
-        await UniTask.Delay(500);
-        isStar = false;
+        Observable.Timer(TimeSpan.FromSeconds(1))
+            .Subscribe(_ => isStar = false);
+        pp.FinishStar();
         var targetPos = new Vector2(transform.position.x, -3f);
         LeanTween.move(this.gameObject, targetPos, 0.2f).setEaseInOutCubic();
     }
@@ -45,7 +50,6 @@ public class PlayerHitDetector : MonoBehaviour
     {
         var value = enemy.GetComponent<BaseEnemy>().ScoreValue;
         onHit.OnNext(value);
-        //Destroy(enemy);
         enemy.GetComponent<BaseEnemy>().StopMove();
         LeanTween.rotateZ(enemy, 50, 1f).setEaseInOutElastic();
         LeanTween.move(enemy, new Vector2(UnityEngine.Random.Range(-5,5), 10f), 0.5f);
@@ -60,6 +64,7 @@ public class PlayerHitDetector : MonoBehaviour
     {
         switch (obj.tag) {
             case "Enemy":
+                cs.Shake(0.25f, 0.05f);
                 if(!isStar) {
                     onDeath.OnNext(Unit.Default);
                     return;
