@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerHitDetector : MonoBehaviour
 {
     [SerializeField] private PlayerSkillExecutor skillExecutor;
-
     private Subject<Unit> onDeath = new Subject<Unit>();
     private Subject<int> onHit = new Subject<int>();
     public IObservable<Unit> OnDeath => onDeath;
@@ -30,7 +29,8 @@ public class PlayerHitDetector : MonoBehaviour
         var startPos = transform.position;
         LeanTween.moveY(this.gameObject, 1.0f, 1.5f).setEaseInOutCubic();
 
-        await UniTask.Delay(5000);
+        //await UniTask.Delay(skillExecutor.SkillGauge);
+        await UniTask.WaitUntil(() => skillExecutor.SkillGauge <= 0);
         isStar = false;
         var targetPos = new Vector2(transform.position.x, -3f);
         LeanTween.move(this.gameObject, targetPos, 0.2f).setEaseInOutCubic();
@@ -67,7 +67,7 @@ public class PlayerHitDetector : MonoBehaviour
                 Destroy(obj.gameObject);
                 break;
             case "SkillItem":
-                skillExecutor.ChargeSkill(50);
+                if(!isStar) skillExecutor.ChargeSkill(50).Forget();
                 Destroy(obj.gameObject);
                 break;
             default:

@@ -14,6 +14,7 @@ public class PlayerSkillExecutor : MonoBehaviour
 
     private PlayerInput input;
     private float skillGauge = 0;
+    public float SkillGauge => skillGauge;
 
     private Subject<int> onSkill = new Subject<int>();
     public IObservable<int> OnSkill => onSkill; 
@@ -43,7 +44,7 @@ public class PlayerSkillExecutor : MonoBehaviour
     private void ExecuteSkill()
     {
         if (hitDetector.IsStar) return;
-        skillGauge = 0;
+        //skillGauge = 0;
 
         onSkill.OnNext(scoreValue);
 
@@ -53,15 +54,32 @@ public class PlayerSkillExecutor : MonoBehaviour
             .Subscribe(_ => {
                 cutIn.SetActive(false);
             }).AddTo(this);
+        ReduceSkill(0.5f).Forget();
     }
 
     /// <summary>
     /// value分だけスキルゲージを溜める
     /// </summary>
     /// <param name="value">足す値</param>
-    public void ChargeSkill(float value )
+    public async UniTask ChargeSkill(float value)
     {
-        skillGauge += value;
-        if (skillGauge >= 100) skillGauge = 100;
+        var targetGauge = skillGauge + value;
+        while (skillGauge <= targetGauge) {
+            skillGauge += 1;
+            await UniTask.Delay(10);
+        }
+        //skillGauge += value;
+        //if (skillGauge >= 100) skillGauge = 100;
+    }
+
+    public async UniTask ReduceSkill(float value)
+    {
+        //skillGauge -= value;
+        //if (skillGauge < 0) skillGauge = 0;
+        while (skillGauge > 0) {
+            skillGauge -= value;
+            await UniTask.Delay(10);
+            //if (skillGauge < 0) skillGauge = 0;
+        }
     }
 }

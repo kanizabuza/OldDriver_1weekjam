@@ -13,8 +13,10 @@ public abstract class BaseStage : MonoBehaviour
     [SerializeField] private float skillItemRate;
     //[SerializeField] private GameStateManager stateManager;
     private GameStateManager stateManager;
+    private PlayerHitDetector hitDetector;
     private bool isPlaying = true;
     private float[] xPos = new float[] { -1.9f, -0.6f, 0.6f, 1.9f };
+    private float tempRate;
 
     Dictionary<int, GameObject> objDict;
     Dictionary<int, float> dropDict;
@@ -28,10 +30,21 @@ public abstract class BaseStage : MonoBehaviour
             }).AddTo(this);
 
         stateManager = GameObject.Find("Manager").GetComponent<GameStateManager>();
+        hitDetector = GameObject.Find("Player").GetComponent<PlayerHitDetector>();
 
         stateManager.CurrentState
             .FirstOrDefault(x => x == GameState.Finish)
             .Subscribe(_ => isPlaying = false).AddTo(this);
+
+        tempRate = skillItemRate;
+        this.ObserveEveryValueChanged(x => x.hitDetector.IsStar)
+            .Subscribe(_ => {
+                if (hitDetector.IsStar) {
+                    skillItemRate = 0;
+                    return;
+                }
+                skillItemRate = tempRate;
+            }).AddTo(this);
     }
 
     /// <summary>
