@@ -29,14 +29,4 @@ public class ResultManager : MonoBehaviour
         resultPopup.SetActive(true);
         scoreText.text = scoreManager.TotalScore.ToString();
     }
-
-    /// <summary>
-    /// タイトルに戻る
-    /// </summary>
-    /// <returns></returns>
-    private async UniTask GoToTitleAsync()
-    {
-        await UniTask.Delay(2000);
-        SceneManager.LoadScene("Title");
-    }
 }

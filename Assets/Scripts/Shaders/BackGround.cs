@@ -23,7 +23,7 @@ public class BackGround : MonoBehaviour
                 Vector2 offset = new Vector2(0, y);
                 GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", offset);
             }).AddTo(this);
-
+        
         stateManager.CurrentState
             .FirstOrDefault(x => x == GameState.Finish)
             .Subscribe(_ => isPlaying = false).AddTo(this);

@@ -89,7 +89,6 @@ public class Message : MonoBehaviour
                 if (messageText.text.Contains("おじい")) {
                     // omoideImage.gameObject.SetActive(true);
                     // omoideAnim.SetTrigger("isImageShow");
-                    Debug.Log("1");
                     if (ozichanNum < 3) {
                         ozichan.color = new Color(1.0f, 1.0f, 1.0f);
                     } else {
@@ -98,7 +97,6 @@ public class Message : MonoBehaviour
                     obachan.color = new Color(0.3f, 0.3f, 0.3f);
                 }
                 if (messageText.text.Contains("おばあ")) {
-                    Debug.Log("2");
                     if (ozichanNum < 3) {
                         ozichan.color = new Color(0.3f, 0.3f, 0.3f);
                     } else {

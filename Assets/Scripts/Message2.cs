@@ -90,7 +90,6 @@ public class Message2 : MonoBehaviour
                     if (isOzichan) {
                         // omoideImage.gameObject.SetActive(true);
                         // omoideAnim.SetTrigger("isImageShow");
-                        Debug.Log("1");
                         ozichan.color = new Color(1.0f, 1.0f, 1.0f);
                         if (obachanNum < 4) {
                             obachan.color = new Color(0.3f, 0.3f, 0.3f);
@@ -100,8 +99,6 @@ public class Message2 : MonoBehaviour
                     }
                 }
                 if (messageText.text.Contains("おば")) {
-                    Debug.Log("2");
-                    Debug.Log(obachanNum + "Num");
                     if (isOzichan) {
                         ozichan.color = new Color(0.3f, 0.3f, 0.3f);
                     } else {
@@ -199,6 +196,6 @@ public class Message2 : MonoBehaviour
 
     void ChangeScene()
     {
-        //SceneManager.LoadScene("Kaiwa2");
+        SceneManager.LoadScene("Main");
     }
 }

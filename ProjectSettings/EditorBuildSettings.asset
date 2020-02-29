@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kaiwa2.unity
     guid: ba0d9608a16fdca4883301bef32fbca5
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: c037767455c3f154db488d2cc3ed5eda
   m_configObjects: {}
