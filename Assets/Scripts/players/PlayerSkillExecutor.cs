@@ -68,18 +68,13 @@ public class PlayerSkillExecutor : MonoBehaviour
             skillGauge += 1;
             await UniTask.Delay(10);
         }
-        //skillGauge += value;
-        //if (skillGauge >= 100) skillGauge = 100;
     }
 
     public async UniTask ReduceSkill(float value)
     {
-        //skillGauge -= value;
-        //if (skillGauge < 0) skillGauge = 0;
         while (skillGauge > 0) {
             skillGauge -= value;
             await UniTask.Delay(10);
-            //if (skillGauge < 0) skillGauge = 0;
         }
     }
 }

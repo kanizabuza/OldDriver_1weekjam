@@ -31,6 +31,7 @@ public class PlayerHitDetector : MonoBehaviour
 
         //await UniTask.Delay(skillExecutor.SkillGauge);
         await UniTask.WaitUntil(() => skillExecutor.SkillGauge <= 0);
+        await UniTask.Delay(500);
         isStar = false;
         var targetPos = new Vector2(transform.position.x, -3f);
         LeanTween.move(this.gameObject, targetPos, 0.2f).setEaseInOutCubic();
@@ -44,7 +45,11 @@ public class PlayerHitDetector : MonoBehaviour
     {
         var value = enemy.GetComponent<BaseEnemy>().ScoreValue;
         onHit.OnNext(value);
-        Destroy(enemy);
+        //Destroy(enemy);
+        enemy.GetComponent<BaseEnemy>().StopMove();
+        LeanTween.rotateZ(enemy, 50, 1f).setEaseInOutElastic();
+        LeanTween.move(enemy, new Vector2(UnityEngine.Random.Range(-5,5), 10f), 0.5f);
+        Destroy(enemy, 1f);
     }
 
     /// <summary>
