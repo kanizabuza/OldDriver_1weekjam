@@ -46,12 +46,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127e4758407c54c45b421925c973890e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 616510629091201931, guid: 64995e00632a7eb458d412d3afed8143, type: 3}
+  enemy: {fileID: 616510629091201931, guid: dea49cecc0e3c79468d22f2b93c038ae, type: 3}
+  trackb: {fileID: 616510629091201931, guid: 56e6fb2b00543154d85bd029fdd9cceb, type: 3}
+  trackr: {fileID: 616510629091201931, guid: c95db429f810a6f42a7a0b6f48579773, type: 3}
+  trackg: {fileID: 616510629091201931, guid: 545dd0b9f3802ca478e70e3fe2689042, type: 3}
   item: {fileID: 6286277718590254995, guid: 2d3545194bea364429628d2ecd65fd61, type: 3}
   skillItem: {fileID: 5870819039393407808, guid: af63801f4bbb0c64db580585db50de86,
     type: 3}
   enemyRate: 50
-  itemRate: 10
+  trackrRate: 0
+  trackgRate: 0
+  trackbRate: 0
+  itemRate: 20
   skillItemRate: 25
 --- !u!1 &6906153681113312424
 GameObject:

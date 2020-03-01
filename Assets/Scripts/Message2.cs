@@ -10,6 +10,9 @@ public class Message2 : MonoBehaviour
     [SerializeField] private Text messageText;
     //スキップボタン
     [SerializeField] private Button skipButton;
+    //効果音
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip button;
     // 表示するメッセージ
     [SerializeField]
     [TextArea(1, 20)]
@@ -70,6 +73,7 @@ public class Message2 : MonoBehaviour
         //hideAnim.GetComponent<Animator>();
         // messageText.GetComponent<Text>();
         skipButton.onClick.AddListener(() => {
+            audio.PlayOneShot(button);
             Invoke("ChangeScene", 0.1f);
         });
 
