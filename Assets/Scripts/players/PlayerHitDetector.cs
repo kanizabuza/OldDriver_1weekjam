@@ -7,6 +7,15 @@ using UnityEngine.Rendering.PostProcessing;
 public class PlayerHitDetector : MonoBehaviour
 {
     [SerializeField] private PlayerSkillExecutor skillExecutor;
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioSource audio2;
+    [SerializeField] private AudioSource audio3;
+    [SerializeField] private AudioClip hit;
+    [SerializeField] private AudioClip hitItem;
+    [SerializeField] private AudioClip skill;
+    [SerializeField] private AudioClip skill2;
+    [SerializeField] private AudioClip skill3;
+
     private PostProcess pp;
     private CameraShake cs;
     private Subject<Unit> onDeath = new Subject<Unit>();
@@ -30,6 +39,11 @@ public class PlayerHitDetector : MonoBehaviour
     /// </summary>
     private async UniTask ChangeStarState(int value)
     {
+        audio.PlayOneShot(skill);
+        audio2.PlayOneShot(skill2);
+        Observable.Timer(TimeSpan.FromSeconds(0.3f))
+            .Subscribe(_ => audio3.PlayOneShot(skill3)).AddTo(this);
+
         isStar = true;
         var startPos = transform.position;
         LeanTween.moveY(this.gameObject, 1.0f, 1.5f).setEaseInOutCubic();
@@ -64,6 +78,7 @@ public class PlayerHitDetector : MonoBehaviour
     {
         switch (obj.tag) {
             case "Enemy":
+                audio.PlayOneShot(hit);
                 cs.Shake(0.25f, 0.05f);
                 if(!isStar) {
                     onDeath.OnNext(Unit.Default);
@@ -72,11 +87,13 @@ public class PlayerHitDetector : MonoBehaviour
                 BeatEnemy(obj.gameObject);
                 break;
             case "Item":
+                audio.PlayOneShot(hitItem);
                 var value = obj.GetComponent<BaseItem>().ScoreValue;
                 onHit.OnNext(value);
                 Destroy(obj.gameObject);
                 break;
             case "SkillItem":
+                audio.PlayOneShot(hitItem);
                 if(!isStar) skillExecutor.ChargeSkill(50).Forget();
                 Destroy(obj.gameObject);
                 break;
