@@ -11,7 +11,7 @@ public class BackForKaiwa : MonoBehaviour
     void Start()
     {
         preSpeed = speed;
-        tex.wrapMode = TextureWrapMode.Repeat;
+      //  tex.wrapMode = TextureWrapMode.Repeat;
 
         Observable.EveryUpdate()
             .Where(_ => isPlaying == true)

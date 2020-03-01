@@ -63,6 +63,10 @@ public class PlayerSkillExecutor : MonoBehaviour
     /// <param name="value">足す値</param>
     public async UniTask ChargeSkill(float value)
     {
+        if (skillGauge >= 100) {
+            skillGauge = 100;
+            return;
+        }
         var targetGauge = skillGauge + value;
         while (skillGauge <= targetGauge) {
             skillGauge += 2;
