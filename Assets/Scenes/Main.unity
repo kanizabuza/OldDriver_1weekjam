@@ -761,6 +761,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 331
       objectReference: {fileID: 0}
+    - target: {fileID: 6965233645937871271, guid: 71850d801de460041ae9842cbec1024d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 163
+      objectReference: {fileID: 0}
     - target: {fileID: 6965233644365755402, guid: 71850d801de460041ae9842cbec1024d,
         type: 3}
       propertyPath: OnShow.m_PersistentCalls.m_Calls.Array.size
@@ -780,11 +785,6 @@ PrefabInstance:
         type: 3}
       propertyPath: showDelay
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6965233645937871271, guid: 71850d801de460041ae9842cbec1024d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 163
       objectReference: {fileID: 0}
     - target: {fileID: 6965233644691193045, guid: 71850d801de460041ae9842cbec1024d,
         type: 3}
@@ -2921,6 +2921,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
+        type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 1462630978}
+    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
+        type: 3}
+      propertyPath: hitItem
+      value: 
+      objectReference: {fileID: 8300000, guid: b9b5fedbbad518c4b828d199fd6c7c02, type: 3}
+    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
+        type: 3}
+      propertyPath: hit
+      value: 
+      objectReference: {fileID: 8300000, guid: 96a22b2d59c29e54ca552aa1559e66fa, type: 3}
+    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 8300000, guid: 5b94bd25babe2cb46aba9f31bebc94c8, type: 3}
+    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
+        type: 3}
+      propertyPath: audio2
+      value: 
+      objectReference: {fileID: 500198418}
+    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
+        type: 3}
+      propertyPath: skill2
+      value: 
+      objectReference: {fileID: 8300000, guid: b857055b5a816034cb1511bb16e0afee, type: 3}
+    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
+        type: 3}
+      propertyPath: audio3
+      value: 
+      objectReference: {fileID: 1931448240}
+    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
+        type: 3}
+      propertyPath: skill3
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d35dfd1bf8f3764fade9391c4a1c4e5, type: 3}
+    - target: {fileID: 2520004322758575344, guid: a46f9d4350b62fe429b08a349cadbad7,
+        type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 561140895}
     - target: {fileID: 2520004322758575347, guid: a46f9d4350b62fe429b08a349cadbad7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2976,51 +3021,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2520004322758575344, guid: a46f9d4350b62fe429b08a349cadbad7,
-        type: 3}
-      propertyPath: slider
-      value: 
-      objectReference: {fileID: 561140895}
-    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
-        type: 3}
-      propertyPath: audio
-      value: 
-      objectReference: {fileID: 1462630978}
-    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
-        type: 3}
-      propertyPath: hitItem
-      value: 
-      objectReference: {fileID: 8300000, guid: b9b5fedbbad518c4b828d199fd6c7c02, type: 3}
-    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
-        type: 3}
-      propertyPath: hit
-      value: 
-      objectReference: {fileID: 8300000, guid: 96a22b2d59c29e54ca552aa1559e66fa, type: 3}
-    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
-        type: 3}
-      propertyPath: skill
-      value: 
-      objectReference: {fileID: 8300000, guid: 5b94bd25babe2cb46aba9f31bebc94c8, type: 3}
-    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
-        type: 3}
-      propertyPath: audio2
-      value: 
-      objectReference: {fileID: 500198418}
-    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
-        type: 3}
-      propertyPath: skill2
-      value: 
-      objectReference: {fileID: 8300000, guid: b857055b5a816034cb1511bb16e0afee, type: 3}
-    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
-        type: 3}
-      propertyPath: audio3
-      value: 
-      objectReference: {fileID: 1931448240}
-    - target: {fileID: 2520004322758575345, guid: a46f9d4350b62fe429b08a349cadbad7,
-        type: 3}
-      propertyPath: skill3
-      value: 
-      objectReference: {fileID: 8300000, guid: 1d35dfd1bf8f3764fade9391c4a1c4e5, type: 3}
     - target: {fileID: 2520004321242860653, guid: a46f9d4350b62fe429b08a349cadbad7,
         type: 3}
       propertyPath: m_IsActive
@@ -3256,5 +3256,15 @@ PrefabInstance:
       propertyPath: skillItemRate
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5993060093669288582, guid: 18af56cba11609e43af16452d44a23a8,
+        type: 3}
+      propertyPath: tex
+      value: 
+      objectReference: {fileID: 2800000, guid: 92a94ebd0851c394aa365b79a6edec66, type: 3}
+    - target: {fileID: 5993060095435423425, guid: 18af56cba11609e43af16452d44a23a8,
+        type: 3}
+      propertyPath: tex
+      value: 
+      objectReference: {fileID: 2800000, guid: 92a94ebd0851c394aa365b79a6edec66, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18af56cba11609e43af16452d44a23a8, type: 3}

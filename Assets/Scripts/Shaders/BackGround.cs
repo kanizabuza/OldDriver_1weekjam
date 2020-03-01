@@ -14,8 +14,6 @@ public class BackGround : MonoBehaviour
         stateManager = GameObject.Find("Manager").GetComponent<GameStateManager>();
         hitDetector = GameObject.Find("Player").GetComponent<PlayerHitDetector>();
         preSpeed = speed;
-
-        Texture tex = GetComponent<Texture>();
         tex.wrapMode = TextureWrapMode.Repeat;
         Observable.EveryUpdate()
             .Where(_ => isPlaying == true)
