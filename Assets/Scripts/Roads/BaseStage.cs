@@ -6,9 +6,15 @@ using System;
 public abstract class BaseStage : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject trackb;
+    [SerializeField] private GameObject trackr;
+    [SerializeField] private GameObject trackg;
     [SerializeField] private GameObject item;
     [SerializeField] private GameObject skillItem;
     [SerializeField] private float enemyRate;
+    [SerializeField] private float trackrRate;
+    [SerializeField] private float trackgRate;
+    [SerializeField] private float trackbRate;
     [SerializeField] private float itemRate;
     [SerializeField] private float skillItemRate;
     //[SerializeField] private GameStateManager stateManager;
@@ -59,7 +65,10 @@ public abstract class BaseStage : MonoBehaviour
     {
         InitializeDicts();
         int id = RandomChoose();
-        if (id == 3) return;
+        if (id == 6) return;
+        if(id == 0) {
+
+        }
         var obj = Instantiate(objDict[id]);
         obj.transform.position = RandomPos();
     }
@@ -106,14 +115,20 @@ public abstract class BaseStage : MonoBehaviour
     {
         objDict = new Dictionary<int, GameObject>();
         objDict.Add(0,enemy);
-        objDict.Add(1, item);
-        objDict.Add(2, skillItem);
-        objDict.Add(3, null);
+        objDict.Add(1, trackr);
+        objDict.Add(2, trackg);
+        objDict.Add(3, trackb);
+        objDict.Add(4, item);
+        objDict.Add(5, skillItem);
+        objDict.Add(6, null);
 
         dropDict = new Dictionary<int, float>();
         dropDict.Add(0,enemyRate);
-        dropDict.Add(1, itemRate);
-        dropDict.Add(2, skillItemRate);
-        dropDict.Add(3, 100 - (enemyRate + itemRate + skillItemRate));
+        dropDict.Add(1, trackrRate);
+        dropDict.Add(2, trackgRate);
+        dropDict.Add(3, trackbRate);
+        dropDict.Add(4, itemRate);
+        dropDict.Add(5, skillItemRate);
+        dropDict.Add(6, 100 - (enemyRate + trackrRate + trackgRate + trackbRate + itemRate + skillItemRate));
     }
 }
