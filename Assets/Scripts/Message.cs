@@ -10,9 +10,6 @@ public class Message : MonoBehaviour
     [SerializeField] private Text messageText;
     //スキップボタン
     [SerializeField] private Button skipButton;
-    //効果音
-    [SerializeField] private AudioSource audio;
-    [SerializeField] private AudioClip button;
     // 表示するメッセージ
     [SerializeField]
     [TextArea(1, 20)]
@@ -128,7 +125,6 @@ public class Message : MonoBehaviour
 
             //メッセージ表示中にマウスの左ボタンを押したら一括表示
             if (Input.GetMouseButtonDown(0)) {
-                audio.PlayOneShot(button);
                 //ここまでに表示しているテキストに残りのメッセージを足す
                 messageText.text += splitMessage[messageNum].Substring(nowTextNum);
                 isOneMessage = true;
@@ -148,7 +144,6 @@ public class Message : MonoBehaviour
                    // omoideImage.gameObject.SetActive(true);
                    // omoideAnim.SetTrigger("isImageShow");
                 }
-                audio.PlayOneShot(button);
                 nowTextNum = 0;
                 messageNum++;
                 messageText.text = "";
