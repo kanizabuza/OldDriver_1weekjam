@@ -24,7 +24,7 @@ public class SceneLoader : MonoBehaviour
 
     public async UniTask LoadScene(Scenes scene)
     {
-        await fade.FadeIn(1f, () => print("フェードイン完了"));
+        //await fade.FadeIn(0.5f, () => print("フェードイン完了"));
         switch (scene) {
             case Scenes.Title:
                 currentScene = Scenes.Title;
@@ -43,9 +43,9 @@ public class SceneLoader : MonoBehaviour
                 await SceneManager.LoadSceneAsync("Main");
                 break;
         }
-        
+        /*
         Observable.Timer(TimeSpan.FromSeconds(2f))
             .Where(_ => currentScene != Scenes.Main && currentScene != Scenes.Title)
-            .Subscribe(_ => fade.FadeOut(0.5f, () => print("フェードアウト完了"))).AddTo(this);
+            .Subscribe(_ => fade.FadeOut(0.5f, () => print("フェードアウト完了"))).AddTo(this);*/
     }
 }

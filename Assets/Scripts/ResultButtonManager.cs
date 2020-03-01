@@ -9,6 +9,8 @@ public class ResultButtonManager : MonoBehaviour
 {
     [SerializeField] private Button GotoTitleButton;
     [SerializeField] private Button RankingButton;
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip button;
 
     private SceneLoader sceneLoader;
 
@@ -23,11 +25,13 @@ public class ResultButtonManager : MonoBehaviour
     private void LoadTitle()
     {
         //SceneManager.LoadScene("Title");
+        audio.PlayOneShot(button);
         sceneLoader.LoadScene(SceneLoader.Scenes.Title).Forget();
     }
 
     private void ShowRanking()
     {
+        audio.PlayOneShot(button);
         Debug.Log("Ranking");
     }
 }

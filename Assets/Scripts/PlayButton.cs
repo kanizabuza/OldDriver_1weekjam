@@ -8,6 +8,9 @@ using UniRx.Async;
 public class PlayButton : MonoBehaviour
 {
     [SerializeField] private Button playButton;
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip button;
+
     private SceneLoader sceneLoader;
 
     void Start()
@@ -18,6 +21,7 @@ public class PlayButton : MonoBehaviour
 
     private void onClickPlay()
     {
+        audio.PlayOneShot(button);
         //SceneManager.LoadScene("Kaiwa");
         sceneLoader.LoadScene(SceneLoader.Scenes.Kaiwa).Forget();
     }

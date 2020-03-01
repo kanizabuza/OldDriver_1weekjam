@@ -70,7 +70,7 @@ public class Message2 : MonoBehaviour
         //hideAnim.GetComponent<Animator>();
         // messageText.GetComponent<Text>();
         skipButton.onClick.AddListener(() => {
-            Invoke("ChangeScene", 3f);
+            Invoke("ChangeScene", 0.1f);
         });
 
         sceneLoader = GameObject.Find("FadeCanvas").GetComponent<SceneLoader>();
