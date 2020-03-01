@@ -60,6 +60,9 @@ public class Message : MonoBehaviour
 
     private SceneLoader sceneLoader;
 
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip button;
+
     void Start()
     {
         clickIcon.enabled = false;
@@ -121,7 +124,7 @@ public class Message : MonoBehaviour
 
             //メッセージ表示中にマウスの左ボタンを押したら一括表示
             if (Input.GetMouseButtonDown(0)) {
-
+                audio.PlayOneShot(button);
                 //ここまでに表示しているテキストに残りのメッセージを足す
                 messageText.text += splitMessage[messageNum].Substring(nowTextNum);
                 isOneMessage = true;
@@ -141,6 +144,7 @@ public class Message : MonoBehaviour
                    // omoideImage.gameObject.SetActive(true);
                    // omoideAnim.SetTrigger("isImageShow");
                 }
+                audio.PlayOneShot(button);
                 nowTextNum = 0;
                 messageNum++;
                 messageText.text = "";

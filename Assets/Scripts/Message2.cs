@@ -56,6 +56,10 @@ public class Message2 : MonoBehaviour
 
     private SceneLoader sceneLoader;
 
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip button;
+    [SerializeField] private AudioClip oji;
+
     // [SerializeField] private Animator omoideAnim;
     // [SerializeField] private Animator hideAnim;
     // [SerializeField] private Image QuestImage;
@@ -118,6 +122,7 @@ public class Message2 : MonoBehaviour
                 }
 
                 if (messageText.text.Contains("？おじ")) {
+                    audio.PlayOneShot(oji);
                     Debug.Log("1");
                     // omoideImage.gameObject.SetActive(true);
                     // omoideAnim.SetTrigger("isImageShow");
@@ -143,7 +148,7 @@ public class Message2 : MonoBehaviour
 
             //メッセージ表示中にマウスの左ボタンを押したら一括表示
             if (Input.GetMouseButtonDown(0)) {
-
+                audio.PlayOneShot(button);
                 //ここまでに表示しているテキストに残りのメッセージを足す
                 messageText.text += splitMessage[messageNum].Substring(nowTextNum);
                 isOneMessage = true;
@@ -162,6 +167,7 @@ public class Message2 : MonoBehaviour
                    // omoideImage.gameObject.SetActive(true);
                    // omoideAnim.SetTrigger("isImageShow");
                 }
+                audio.PlayOneShot(button);
                 nowTextNum = 0;
                 messageNum++;
                 messageText.text = "";
