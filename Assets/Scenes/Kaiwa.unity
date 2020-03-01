@@ -1128,6 +1128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageText: {fileID: 74573629}
   skipButton: {fileID: 1059452511}
+  audio: {fileID: 1059452514}
+  button: {fileID: 8300000, guid: f50ef3dd6ee4e374a84e3e591e6de993, type: 3}
   allMessage: "\u304A\u3070\u3042\u3061\u3083\u3093\uFF1A\u304A\u3058\u3044\u3061\u3083\u3093\u3084\u3001\u305D\u308D\u305D\u308D\u79C1\u305F\u3061\u3082\u5E74\u3060\u3057\u3001\u514D\u8A31\u8FD4\u7D0D\u3092\u8003\u3048\u306A\u3044\u304B\u3044\uFF1F\u3002\n\u9AD8\u9F62\u8005\u304C\u8D77\u3053\u3059\u4E8B\u6545\u304C\u591A\u304F\u30CB\u30E5\u30FC\u30B9\u306B\u306A\u3063\u3066\u3044\u308B\u3057\u3001\u3044\u3064\u304B\u79C1\u305F\u3061\u3082\u3001\u3068\u601D\u3046\u3068\u306D\u3047<>\u304A\u3058\u3044\u3061\u3083\u3093\uFF1A\u4F55\u3092\u8A00\u3063\u3066\u308B\u3093\u3060\uFF01\u4FFA\u305F\u3061\u306E\u5730\u57DF\u3067\u306F\u8ECA\u3092\u904B\u8EE2\u3057\u306A\u3044\u3068\u751F\u304D\u3066\u3044\u3051\u306A\u3044\u3060\u308D\u3046\uFF01<>\u304A\u3058\u3044\u3061\u3083\u3093\uFF1A\u305D\u308C\u306B\u4ECA\u65E5\u3082\u8ECA\u3067\u304A\u51FA\u304B\u3051\u3057\u3088\u3046\u3063\u3066\u3044\u3046\u8A71\u3060\u3063\u305F\u3058\u3083\u306A\u3044\u304B\uFF01\uFF01\n\u8ECA\u304C\u306A\u3044\u751F\u6D3B\u306A\u3093\u3067\u8003\u3048\u3089\u308C\u306A\u3044\u305E\uFF01<>\u304A\u3058\u3044\u3061\u3083\u3093\uFF1A\u308F\u3057\u306F\u514D\u8A31\u8FD4\u7D0D\u306A\u3093\u3066\u7D76\u5BFE\u306B\u3057\u306A\u3044\u306D\uFF01\uFF01<>\u304A\u3070\u3042\u3061\u3083\u3093\uFF1A!!\n\u6C17\u6301\u3061\u306F\u308F\u304B\u308B\u3051\u3069\u306D\u3047\u3001\u4E8B\u6545\u3092\u8D77\u3053\u3057\u3066\u304B\u3089\u3058\u3083\u304A\u305D\u3044\u3093\u3058\u3083\u306A\u3044\u304B\u306D\u3047<>\u304A\u3058\u3044\u3061\u3083\u3093\uFF1A\u308F\u3057\u304C\u4E8B\u6545\u3092\u8D77\u3053\u3059\u308F\u3051\u306A\u3044\u3058\u3083\u308D\u3046\n\u4F55\u5E74\u904B\u8EE2\u3057\u3066\u308B\u3068\u601D\u3063\u3066\u3044\u308B\u3093\u3058\u3083\uFF01\uFF01<>\u304A\u3070\u3042\u3061\u3083\u3093\uFF1A\u305D\u3046\u304B\u306D\u3047\u2026\u2026\u2026\u3002\n\u305D\u3053\u307E\u3067\u3044\u3046\u306A\u3089\u3001\u4ECA\u65E5\u3082\u8ECA\u3067\u51FA\u304B\u3051\u308B\u3068\u3059\u308B\u304B\u306D\u3047<>\u304A\u3058\u3044\u3061\u3083\u3093\uFF1A\u304A\u3046\uFF01\u3044\u304F\u305E\u3001\u3070\u3042\u3055\u3093"
   splitString: <>
   textSpeed: 0.05
@@ -1332,6 +1334,7 @@ GameObject:
   - component: {fileID: 1059452513}
   - component: {fileID: 1059452512}
   - component: {fileID: 1059452511}
+  - component: {fileID: 1059452514}
   m_Layer: 5
   m_Name: SkipButton
   m_TagString: Untagged
@@ -1441,6 +1444,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059452509}
   m_CullTransparentMesh: 0
+--- !u!82 &1059452514
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059452509}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.74
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1315815913
 GameObject:
   m_ObjectHideFlags: 0
