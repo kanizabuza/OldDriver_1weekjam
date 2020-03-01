@@ -16,6 +16,7 @@ public class StageManager : MonoBehaviour
     private GameObject preStage;
     private GameObject stage;
     private bool isTutorial = true;
+    public bool IsTutorial => isTutorial;
 
     private void Start()
     {
