@@ -4,6 +4,7 @@ using UnityEngine;
 public class BackGround : MonoBehaviour
 {
     [SerializeField] private float speed = 0.1f;
+    [SerializeField] private Texture tex;
     private GameStateManager stateManager;
     private PlayerHitDetector hitDetector;
     private bool isPlaying = true;
@@ -14,6 +15,8 @@ public class BackGround : MonoBehaviour
         hitDetector = GameObject.Find("Player").GetComponent<PlayerHitDetector>();
         preSpeed = speed;
 
+        Texture tex = GetComponent<Texture>();
+        tex.wrapMode = TextureWrapMode.Repeat;
         Observable.EveryUpdate()
             .Where(_ => isPlaying == true)
             .Subscribe(_ => {
