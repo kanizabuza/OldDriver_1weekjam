@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using UniRx.Async;
 
 public class Message2 : MonoBehaviour
 {
@@ -54,6 +54,8 @@ public class Message2 : MonoBehaviour
     private bool isOzichan = true;
     private int obachanNum = 0;
 
+    private SceneLoader sceneLoader;
+
     // [SerializeField] private Animator omoideAnim;
     // [SerializeField] private Animator hideAnim;
     // [SerializeField] private Image QuestImage;
@@ -70,6 +72,8 @@ public class Message2 : MonoBehaviour
         skipButton.onClick.AddListener(() => {
             Invoke("ChangeScene", 3f);
         });
+
+        sceneLoader = GameObject.Find("FadeCanvas").GetComponent<SceneLoader>();
     }
 
     // Update is called once per frame
@@ -196,6 +200,7 @@ public class Message2 : MonoBehaviour
 
     void ChangeScene()
     {
-        SceneManager.LoadScene("Main");
+        //SceneManager.LoadScene("Main");
+        sceneLoader.LoadScene(SceneLoader.Scenes.Main).Forget();
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using UniRx.Async;
 
 public class Message : MonoBehaviour
 {
@@ -58,7 +58,8 @@ public class Message : MonoBehaviour
     // [SerializeField] private Animator hideAnim;
     // [SerializeField] private Image QuestImage;
 
-    // Start is called before the first frame update
+    private SceneLoader sceneLoader;
+
     void Start()
     {
         clickIcon.enabled = false;
@@ -70,6 +71,8 @@ public class Message : MonoBehaviour
         skipButton.onClick.AddListener(() => {
             Invoke("ChangeScene", 3f);
         });
+
+        sceneLoader = GameObject.Find("FadeCanvas").GetComponent<SceneLoader>();
     }
 
     // Update is called once per frame
@@ -176,6 +179,7 @@ public class Message : MonoBehaviour
 
     void ChangeScene()
     {
-        SceneManager.LoadScene("Kaiwa2");
+        //SceneManager.LoadScene("Kaiwa2");
+        sceneLoader.LoadScene(SceneLoader.Scenes.Kaiwa2).Forget();
     }
 }
